@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
 export interface ExpensesContextValue {
-  expenses: Expense[] | [];
-  addNewExpense: (value: number) => void;
-  removeExpense: (id: string) => void;
+  expenses: Expense[];
+  addNewExpense: (expense: Expense) => void;
+  removeExpense: (id: number) => void;
 }
 
 export interface ExpensesContextProviderops {
@@ -11,7 +11,7 @@ export interface ExpensesContextProviderops {
 }
 
 export interface Expense {
-  id: string;
+  id: number;
   name: string;
   price: number;
 }

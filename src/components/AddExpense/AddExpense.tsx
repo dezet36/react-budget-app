@@ -1,15 +1,9 @@
 import React from "react";
-import { Button } from "../Button/Button";
-import {
-  // StyledAddExpense,
-  Title,
-  StyledInputForm,
-  StyledButton,
-  StyledAddExpense,
-} from "./styled";
+import { ButtonForm } from "../Button/ButtonForm";
+import { Title, StyledInputForm, StyledAddExpense } from "./styled";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-// import { text } from "stream/consumers";
+
 import { useBudgetContext } from "../../context/BadgetContext/BadgetContex";
 import { useExpensesContext } from "../../context/ExpensesContext/ExpensesContext";
 import { Expense } from "../../context/ExpensesContext/types";
@@ -20,21 +14,15 @@ export const AddExpense = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<Expense>();
 
   const { budget } = useBudgetContext();
-
-  console.log(watch("name"));
-  console.log(watch("price"));
 
   const { addNewExpense } = useExpensesContext();
 
   const onSubmit: SubmitHandler<Expense> = ({ name, price }) => {
     if (budget) {
-      console.log(name);
       addNewExpense({ name, price, id: 1 });
-    } else {
-      alert("Enter budget");
     }
   };
   return (
@@ -60,9 +48,7 @@ export const AddExpense = () => {
         placeholder="enter cost ..."
       />
 
-      {errors.exampleRequired && <p>This field is required</p>}
-
-      <input type="submit" />
+      <ButtonForm type="submit" />
     </StyledAddExpense>
   );
 };
