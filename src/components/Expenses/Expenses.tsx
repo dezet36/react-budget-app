@@ -7,39 +7,18 @@ import { Expense } from "../../context/ExpensesContext/types";
 
 export const Expenses = () => {
   const searchValue = useInput();
-  // const debouncedValue = useDebounce(searchValue.value);
-  const [sortedExpenses, setSortedExpenses] = useState<Expense[]>();
-  const { expenses, removeExpense } = useExpensesContext();
+  const { expenses } = useExpensesContext();
+  const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>(expenses);
+
   return (
     <StyleExpenses>
       <Title>Expenses</Title>
-      <StyledInput placeholder="seach..." />
-      <ExpensesList expenses={[]} />
-      <EmptyText>Oooops 🙈</EmptyText>
+      <StyledInput {...searchValue} placeholder="search ..." />
+      {filteredExpenses.length ? (
+        <ExpensesList expenses={filteredExpenses} />
+      ) : (
+        <EmptyText>Oooops 🙈</EmptyText>
+      )}
     </StyleExpenses>
   );
 };
-
-// import { InputSearch } from "../InputSearch/InputSearch";
-
-// import { Title } from "../Title/Title";
-// import { EmptyText, StyledExpenses } from "./styles";
-// import { ExpenseProduct } from "../../types/types";
-
-// import { useDebounce } from "../../hooks/useDebounce";
-
-// export const Expenses = () => {
-//   const { expenses } = useExpensesContext();
-//   const searchValue = useInput();
-//   const debouncedValue = useDebounce(searchValue.value);
-//   const [sortedExpenses, setSortedExpenses] = useState<ExpenseProduct[]>();
-
-//   return (
-//     <StyledExpenses>
-//       <Title title="Expenses" />
-//       <InputSearch placeholder="seach..." />
-//       <ExpensesList expenses={[]} />
-//       <EmptyText>Oooops 🙈</EmptyText>
-//     </StyledExpenses>
-//   );
-// };
