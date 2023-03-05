@@ -12,7 +12,7 @@ export const ExpensesList = ({ expenses }: ExpensesListProps) => {
   return (
     <StyledExpenseList>
       {expenses.map((expense) => (
-        <ExpenseItem key={expense.id} />
+        <ExpenseItem expense={expense} key={expense.id} />
       ))}
     </StyledExpenseList>
   );

@@ -24,6 +24,7 @@ const StyledItemBox = styled.div`
 const StyledButtonDelete = styled.button`
   width: 15px;
   height: 15px;
+  border: none;
   background: url(${cross});
 `;
 

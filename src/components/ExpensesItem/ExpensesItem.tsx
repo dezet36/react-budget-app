@@ -1,4 +1,6 @@
 import React from "react";
+import { useCurrencyContext } from "../../context/CurrencyContext/CurrencyContext";
+import { useExpensesContext } from "../../context/ExpensesContext/ExpensesContext";
 import { Badge } from "../Badge/Badge";
 import {
   StyledButtonDelete,
@@ -7,10 +9,23 @@ import {
   StyledItemBox,
 } from "./styled";
 
-export const ExpenseItem = () => {
+import { Expense } from "../../context/ExpensesContext/types";
+
+interface ExpenseItemProps {
+  expense: Expense;
+}
+
+export const ExpenseItem = ({ expense }: ExpenseItemProps) => {
+  const {
+    currentCurrency: { value },
+  } = useCurrencyContext();
+  const { removeExpense } = useExpensesContext();
+  const handleDelete = () => {
+    removeExpense(expense.id);
+  };
   return (
     <StyledExpenseItem>
-      <StyledExpenseText>Like</StyledExpenseText>
+      <StyledExpenseText>{expense.name}</StyledExpenseText>
       <StyledItemBox>
         <Badge />
         <StyledButtonDelete></StyledButtonDelete>
