@@ -1,19 +1,16 @@
 import React from "react";
-import { BadgeHeader, Title, StyledBadge } from "./style";
-import { BudgetCard } from "../BudgetCard/BudgetCard";
-import { RemainingCard } from "../RemainingCard/RemainingCard";
-import { SpentCard } from "../SpentCard/SpentCard";
+import { useCurrencyContext } from "../../context/CurrencyContext/CurrencyContext";
+import { StyledBadge } from "./styled";
 
-export const Badge = () => {
+interface BadgeProps {
+  price: number;
+}
+
+export const Badge = ({ price }: BadgeProps) => {
+  const { currentCurrency } = useCurrencyContext();
   return (
     <StyledBadge>
-      <BadgeHeader>
-        <Title>Budget App</Title>
-        {/* <CustomSelect /> */}
-      </BadgeHeader>
-      <BudgetCard />
-      <RemainingCard />
-      <SpentCard />
+      {currentCurrency.value} {price}
     </StyledBadge>
   );
 };

@@ -42,6 +42,11 @@ const StyledButton = styled.button`
   transition: 0.2s;
   cursor: pointer;
 `;
-export { StyledButton };
 
-export { StyledAddExpense, Title, StyledInputForm };
+const ErrorMessage = styled.p`
+  margin-top: -15px;
+  font-size: 13px;
+  color: red;
+`;
+
+export { StyledAddExpense, Title, StyledInputForm, ErrorMessage, StyledButton };

@@ -1,6 +1,11 @@
 import React from "react";
-import { ButtonForm } from "../Button/ButtonForm";
-import { Title, StyledInputForm, StyledAddExpense } from "./styled";
+import { Button } from "../Button/ButtonForm";
+import {
+  Title,
+  StyledInputForm,
+  StyledAddExpense,
+  ErrorMessage,
+} from "./styled";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -12,18 +17,18 @@ export const AddExpense = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm<Expense>();
 
   const { budget } = useBudgetContext();
+  const { expenses } = useExpensesContext();
 
   const { addNewExpense } = useExpensesContext();
 
   const onSubmit: SubmitHandler<Expense> = ({ name, price }) => {
-    if (budget) {
-      addNewExpense({ name, price, id: 1 });
-    }
+    addNewExpense({ name, price, id: 1 });
+    reset();
   };
   return (
     <StyledAddExpense onSubmit={handleSubmit(onSubmit)}>
@@ -37,7 +42,7 @@ export const AddExpense = () => {
         type="text"
         placeholder="enter name ..."
       />
-
+      {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
       <StyledInputForm
         {...register("price", {
           required: "* price is required",
@@ -47,8 +52,8 @@ export const AddExpense = () => {
         type="number"
         placeholder="enter cost ..."
       />
-
-      <ButtonForm type="submit" />
+      {errors.price && <ErrorMessage>{errors.price.message}</ErrorMessage>}
+      <Button children="Done" />
     </StyledAddExpense>
   );
 };

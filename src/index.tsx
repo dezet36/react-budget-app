@@ -9,13 +9,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <AppContextProvider
-    components={[
-      BudgetContextProvider,
-      ExpensesContextProvider,
-      CurrencyContextProvider,
-    ]}
-  >
+  <AppContextProvider>
     <App />
   </AppContextProvider>
 );

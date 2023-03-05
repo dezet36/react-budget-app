@@ -27,7 +27,7 @@ export const ExpenseItem = ({ expense }: ExpenseItemProps) => {
     <StyledExpenseItem>
       <StyledExpenseText>{expense.name}</StyledExpenseText>
       <StyledItemBox>
-        <Badge />
+        <Badge price={expense.price} />
         <StyledButtonDelete></StyledButtonDelete>
       </StyledItemBox>
     </StyledExpenseItem>

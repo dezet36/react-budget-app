@@ -1,12 +1,22 @@
+import React, { FC, ReactNode } from "react";
 import { GlobalContextProvider } from "./type";
+import { BudgetContextProvider } from "../BadgetContext/BadgetContex";
+import { CurrencyContextProvider } from "../CurrencyContext/CurrencyContext";
+import { ExpensesContextProvider } from "../ExpensesContext/ExpensesContext";
 
-export const AppContextProvider = (props: GlobalContextProvider) => {
-  const { components = [], children } = props;
+const providers = [
+  BudgetContextProvider,
+  CurrencyContextProvider,
+  ExpensesContextProvider,
+];
 
+export const AppContextProvider: FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   return (
     <>
-      {components.reduceRight((acc, Component) => {
-        return <Component>{acc}</Component>;
+      {providers.reduceRight((total, Provider) => {
+        return <Provider>{total}</Provider>;
       }, children)}
     </>
   );
