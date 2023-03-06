@@ -28,7 +28,7 @@ export const ExpenseItem = ({ expense }: ExpenseItemProps) => {
       <StyledExpenseText>{expense.name}</StyledExpenseText>
       <StyledItemBox>
         <Badge price={expense.price} />
-        <StyledButtonDelete></StyledButtonDelete>
+        <StyledButtonDelete onClick={handleDelete}></StyledButtonDelete>
       </StyledItemBox>
     </StyledExpenseItem>
   );

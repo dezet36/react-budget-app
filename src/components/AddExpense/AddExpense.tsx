@@ -6,12 +6,11 @@ import {
   StyledAddExpense,
   ErrorMessage,
 } from "./styled";
-
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import { useBudgetContext } from "../../context/BadgetContext/BadgetContex";
 import { useExpensesContext } from "../../context/ExpensesContext/ExpensesContext";
 import { Expense } from "../../context/ExpensesContext/types";
+import { v4 as uuidv4 } from "uuid";
 
 export const AddExpense = () => {
   const {
@@ -27,7 +26,7 @@ export const AddExpense = () => {
   const { addNewExpense } = useExpensesContext();
 
   const onSubmit: SubmitHandler<Expense> = ({ name, price }) => {
-    addNewExpense({ name, price, id: 1 });
+    addNewExpense({ name, price, id: uuidv4() });
     reset();
   };
   return (

@@ -1,8 +1,15 @@
 import styled from "styled-components";
 
-const StyleRemainig = styled.div`
+interface RemainigProps {
+  $isEditMode: boolean;
+}
+
+const StyleRemainig = styled.div<RemainigProps>`
   padding: 38px 20px;
-  background: #ccd5ff;
+  color: ${({ $isEditMode }: RemainigProps) =>
+    $isEditMode ? "#000000" : "#FFFFFF"};
+  background: ${({ $isEditMode }: RemainigProps) =>
+    $isEditMode ? "#CCD5FF" : "#FF0000"};
   border-radius: 20px;
 `;
 
