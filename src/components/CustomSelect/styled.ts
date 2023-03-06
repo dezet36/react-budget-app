@@ -1,7 +1,7 @@
 import { StylesConfig } from "react-select";
-import { CurrencyContextValue } from "../../context/CurrencyContext/types";
+import { CurrencyValue } from "../../config/types";
 
-export const selectStyles: StylesConfig<CurrencyContextValue> = {
+export const selectStyles: StylesConfig<CurrencyValue> = {
   control: (baseStyles) => ({
     ...baseStyles,
     height: "30px",
@@ -16,6 +16,7 @@ export const selectStyles: StylesConfig<CurrencyContextValue> = {
   }),
   option: (baseStyles, state) => ({
     ...baseStyles,
+    color: "black",
     backgroundColor: state.isFocused ? "#7CC6FE" : "white",
   }),
 };
