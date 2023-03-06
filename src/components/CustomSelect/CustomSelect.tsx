@@ -6,7 +6,7 @@ import { selectStyles } from "./styled";
 
 export const CustomSelect = () => {
   const { currencies, currentCurrency, setNewCurrency } = useCurrencyContext();
-  const handleOption = (option: SingleValue<CurrencyValue>) => {
+  const handlOption = (option: SingleValue<CurrencyValue>) => {
     if (option) {
       setNewCurrency(option);
     }
@@ -14,7 +14,7 @@ export const CustomSelect = () => {
   return (
     <Select
       styles={selectStyles}
-      onChange={handleOption}
+      onChange={handlOption}
       value={currentCurrency}
       options={currencies}
       isMulti={false}
